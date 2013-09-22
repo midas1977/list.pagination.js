@@ -1,11 +1,18 @@
-var classes = require('classes'),
-    events = require('event');
-
-module.exports = function(options) {
-    options = options || {};
-
-    var pagingList,
-        list;
+List.prototype.plugins.paging = function(locals, options) {
+    var list = this;
+    var pagingList;
+    var init = function() {
+        options = options || {};
+        pagingList = new List(list.listContainer.id, {
+            listClass: options.pagingClass || 'paging',
+            item: '<li><a class="page" href="javascript:function Z(){Z=""}Z()"></a></li>', // Have to contain something, can't set valueName at root element
+            valueNames: ['page', 'dotted'],
+            searchClass: 'nosearchclass',
+            sortClass: 'nosortclass'
+        });
+        list.on('updated', refresh);
+        refresh();
+    };
 
     var refresh = function() {
         var l = list.matchingItems.length,
@@ -22,23 +29,20 @@ module.exports = function(options) {
         for (var i = 1; i <= pages; i++) {
             var className = (currentPage === i) ? "active" : "";
 
-            //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow), className);
+            //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow));
 
             if (is.number(i, left, right, currentPage, innerWindow)) {
                 var item = pagingList.add({
-                    page: i,
+                    page: ""+(i)+"",
                     dotted: false
                 })[0];
-                if (className) {
-                    classes(item.elm).add(className);
-                }
                 addEvent(item.elm, i, page);
+                addClass(item.elm, className);
             } else if (is.dotted(i, left, right, currentPage, innerWindow, pagingList.size())) {
-                var item = pagingList.add({
-                    page: "&laquo;",
+                pagingList.add({
+                    page: "...",
                     dotted: true
-                })[0];
-                classes(item.elm).add("disabled");
+                });
             }
         }
     };
@@ -73,22 +77,15 @@ module.exports = function(options) {
     };
 
     var addEvent = function(elm, i, page) {
-       events.bind(elm, 'click', function() {
+       ListJsHelpers.addEvent(elm, 'click', function() {
            list.show((i-1)*page + 1, page);
        });
     };
 
-    return {
-        init: function(parentList) {
-            list = parentList;
-            pagingList = new List(list.listContainer.id, {
-                listClass: options.pagingClass || 'pagination',
-                item: "<li><a class='page' href='javascript:function Z(){Z=\"\"}Z()'></a></li>",
-                valueNames: ['page', 'dotted']
-            });
-            list.on('updated', refresh);
-            refresh();
-        },
-        name: options.name || "pagination"
+    var addClass = function(elm, className) {
+       ListJsHelpers.addClass(elm, className);
     };
+
+    init();
+    return this;
 };

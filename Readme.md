@@ -3,16 +3,12 @@
 
   A paging plugin for list.js
 
+## My Modifications
+
+  just edited some things to get it worked with Twitter Bootstrap 3.0
+  see yourself :-)
+  
 ## Installation
 
-  Install with [component(1)](http://component.io):
+  see orginal at: javve/list.paging.js
 
-    $ component install javve/list.paging.js
-
-## API
-
-
-
-## License
-
-  MIT
