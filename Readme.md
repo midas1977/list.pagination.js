@@ -5,10 +5,11 @@
 
 ## My Modifications
 
-  just edited some things to get it worked with Twitter Bootstrap 3.0
-  see yourself :-)
+  Just edited some things in my current project to get it worked with Twitter Bootstrap 3.0.
+  I changed the classes and structure of the generated pagination.
+  Also added the "disabled" class to the dotted items.
   
-## Installation
+## Installation and Usage
 
-  see orginal at: javve/list.paging.js
+  see orginal at: [https://github.com/javve/list.pagination.js]
 

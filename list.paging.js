@@ -39,10 +39,11 @@ List.prototype.plugins.paging = function(locals, options) {
                 addEvent(item.elm, i, page);
                 addClass(item.elm, className);
             } else if (is.dotted(i, left, right, currentPage, innerWindow, pagingList.size())) {
-                pagingList.add({
+                var item = pagingList.add({
                     page: "...",
                     dotted: true
-                });
+                })[0];
+                addClass(item.elm, "disabled");
             }
         }
     };
