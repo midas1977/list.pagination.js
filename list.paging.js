@@ -5,7 +5,7 @@ List.prototype.plugins.paging = function(locals, options) {
         options = options || {};
         pagingList = new List(list.listContainer.id, {
             listClass: options.pagingClass || 'paging',
-            item: '<li><a class="page" href="javascript:function Z(){Z=""}Z()"></a></li>', // Have to contain something, can't set valueName at root element
+            item: '<li><a class="page" href="javascript:function Z(){Z=\'\'}Z()"></a></li>', // Have to contain something, can't set valueName at root element
             valueNames: ['page', 'dotted'],
             searchClass: 'nosearchclass',
             sortClass: 'nosortclass'
