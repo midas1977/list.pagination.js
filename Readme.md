@@ -1,13 +1,12 @@
 
-# list.paging.js
+# list.pagination_bootstrap.js
 
-  A paging plugin for list.js
+  My modified pagination plugin for list.js
 
-## My Modifications
+## tested with...
 
-  Just edited some things in my current project to get it worked with Twitter Bootstrap 3.0.
-  I changed the classes and structure of the generated pagination.
-  Also added the "disabled" class to the dotted items.
+  * ListJs v1.0.0
+  * Twitter Bootstrap v3.0.3
   
 ## Installation and Usage
 
